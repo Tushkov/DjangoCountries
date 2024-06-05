@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import response
 import json
 from DjangoCountries import settings
+from .models import Work
 
 file = open(settings.BASE_DIR / "country-by-languages.json")
 data = json.load(file)
@@ -41,4 +42,9 @@ def country(request, country):
     
     return render(request, "country.html", context)
 
-
+def work(request):
+    context = {
+        "work" : Work.objects.all()
+    }
+    
+    return render(request, "work.html", context)
